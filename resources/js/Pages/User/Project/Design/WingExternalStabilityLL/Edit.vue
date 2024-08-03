@@ -4,35 +4,36 @@ import InputCard from '@/Components/InputCard.vue'
 import InputError from '@/Components/InputError.vue'
 import { useForm } from '@inertiajs/vue3'
 const props = defineProps({
+    design: Object,
     project: Object
 })
 const form = useForm({
     // LS Moment Arm
-    yev: '',
-    yls_v: '',
+    yev: props.design.wing_external_stability_ll.yev,
+    yls_v: props.design.wing_external_stability_ll.yls_v,
 
     // Material Properties
-    bstem_batter: '',
-    b_i: '',
-    sigma_brg: '',
-    delta_s: '',
-    g_r_fill: '',
-    phi_r_fill: '',
-    phi_f_soil: '',
+    bstem_batter: props.design.wing_external_stability_ll.bstem_batter,
+    b_i: props.design.wing_external_stability_ll.b_i,
+    sigma_brg: props.design.wing_external_stability_ll.sigma_brg,
+    delta_s: props.design.wing_external_stability_ll.delta_s,
+    g_r_fill: props.design.wing_external_stability_ll.g_r_fill,
+    phi_r_fill: props.design.wing_external_stability_ll.phi_r_fill,
+    phi_f_soil: props.design.wing_external_stability_ll.phi_f_soil,
 
     // EQ Parameters
-    pga: '',
-    f_pga_eq: '',
-    k_v: '',
+    pga: props.design.wing_external_stability_ll.pga,
+    f_pga_eq: props.design.wing_external_stability_ll.f_pga_eq,
+    k_v: props.design.wing_external_stability_ll.k_v,
 
     // Height and spacing
-    min_design_height: '',
-    max_design_height: '',
-    s_v: '',
+    min_design_height: props.design.wing_external_stability_ll.min_design_height,
+    max_design_height: props.design.wing_external_stability_ll.max_design_height,
+    s_v: props.design.wing_external_stability_ll.s_v,
 })
 
-const submit = (project_id) => {
-    form.post(route('user.projects.designs.abutment_external_stability.store', project_id), {
+const submit = (project_id, design_id) => {
+    form.put(route('user.projects.designs.wing_external_stability_ll.update', { 'project': project_id, 'wing_external_stability_ll': design_id }), {
         onFinish: () => {
             form.reset()
         },
@@ -51,159 +52,7 @@ export default {
     <Head title="Add Test" />
 
     <h3 class="mb-4 ms-3 pt-4 font-weight-normal">Add Design</h3>
-    <form @submit.prevent="submit(project.id)">
-        <InputCard title="Load and Resistance Factors">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h5>Design Information</h5>
-                    <p>Design Standard: AASHTO</p>
-                    <h6>Parameters Used:</h6>
-                    <ul>
-                        <li>Load Factors: Service, Strength, Extreme Event</li>
-                        <li>Resistance Factors: Bearing, Sliding, Extreme Event</li>
-                        <li>Material Properties: Concrete strength, Steel yield strength, Soil properties</li>
-                        <li>Seismic Parameters: Peak Ground Acceleration, Site Class Factors</li>
-                    </ul>
-                    <br>
-                    <table class="table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th colspan="6">Resistance Factors</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>φb.str</td>
-                                <td>0.65</td>
-                                <td>φb.ee</td>
-                                <td>0.9</td>
-                                <td>φsliding</td>
-                                <td>1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th colspan="3">Strength I</th>
-                            </tr>
-                        </thead>
-                        <thead class="thead-light">
-                            <tr>
-                                <th></th>
-                                <th>Vertical Loads</th>
-                                <th>Lateral Loads</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>YLS.str.I</td>
-                                <td>1.75</td>
-                                <td>1.75</td>
-                            </tr>
-                            <tr>
-                                <td>YEH.str.I</td>
-                                <td>1.5</td>
-                                <td>1.5</td>
-                            </tr>
-                            <tr>
-                                <td>YEV.str.I</td>
-                                <td>1.35</td>
-                                <td>1.35</td>
-                            </tr>
-                            <tr>
-                                <td>YEQ.str.I</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>YEV.str.I.Min</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th colspan="3">Service I</th>
-                            </tr>
-                        </thead>
-                        <thead class="thead-light">
-                            <tr>
-                                <th></th>
-                                <th>Vertical Loads</th>
-                                <th>Lateral Loads</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>YLS.ser.I</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>YEH.ser.I</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>YEV.ser.I</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>YEQ.ser.I</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th colspan="3">Extreme Event I</th>
-                            </tr>
-                        </thead>
-                        <thead class="thead-light">
-                            <tr>
-                                <th></th>
-                                <th>Vertical Loads</th>
-                                <th>Lateral Loads</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>YLS.ee.I</td>
-                                <td>0.5</td>
-                                <td>0.5</td>
-                            </tr>
-                            <tr>
-                                <td>YEH.ee.I</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>YEV.ee.I</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>YEQ.ee.I</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </InputCard>
+    <form @submit.prevent="submit(project.id, design.id)">
         <InputCard title="LS Moment Arm">
             <div class="row">
                 <div class="col-lg-6">
@@ -386,15 +235,13 @@ export default {
                         <InputError :message="form.errors.s_v"></InputError>
                     </div>
                 </div>
-                <div class="col-md-3">
-                </div>
             </div>
         </InputCard>
 
         <div class="text-right py-3">
             <Link :href="route('user.projects.designs.index', project.id)" class="btn btn-outline-primary mr-2">Back
             </Link>
-            <button type="submit" class="btn btn-primary mr-2">Create
+            <button type="submit" class="btn btn-danger mr-2">Update
             </button>
         </div>
     </form>

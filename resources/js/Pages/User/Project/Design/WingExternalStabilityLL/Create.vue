@@ -12,42 +12,23 @@ const form = useForm({
     yls_v: '',
 
     // Material Properties
-    fpc: '',
-    fy: '',
-    g_conc: '',
-    e_steel: '',
-    e_conc: '',
-    cpf_soil: '',
     bstem_batter: '',
-    theta: '',
     b_i: '',
     sigma_brg: '',
     delta_s: '',
     g_r_fill: '',
     phi_r_fill: '',
-    cpr_fill: '',
-    g_b_fill: '',
-    phi_b_fill: '',
-    cpb_fill: '',
-    g_f_soil: '',
     phi_f_soil: '',
 
     // EQ Parameters
     pga: '',
-    s_s_eq: '',
-    s_1_eq: '',
     f_pga_eq: '',
-    f_a_eq: '',
-    f_v_eq: '',
-    s_d1_eq: '',
-    a_s_eq: '',
     k_v: '',
 
     // Height and spacing
     min_design_height: '',
     max_design_height: '',
     s_v: '',
-    s_h: ''
 })
 
 const submit = (project_id) => {
@@ -253,69 +234,7 @@ export default {
         </InputCard>
         <InputCard title="Material Properties">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="container-fluild form-group">
-                        <label for="fpc">f'c (ksi)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="fpc" type="number" step="0.0000000001" class="form-control" v-model="form.fpc"
-                                name="fpc" required autocomplete="fpc">
-                        </div>
-                        <InputError :message="form.errors.fpc"></InputError>
-                    </div>
-                    <div class="container-fluild form-group">
-                        <label for="fy">fy (ksi)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="fy" type="number" step="0.0000000001" class="form-control" v-model="form.fy"
-                                name="fy" required autocomplete="fy">
-                        </div>
-                        <InputError :message="form.errors.fy"></InputError>
-                    </div>
-                    <div class="container-fluild form-group">
-                        <label for="g_conc">ϒconc (kcf)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="g_conc" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.g_conc" name="g_conc" required autocomplete="g_conc">
-                        </div>
-                        <InputError :message="form.errors.g_conc"></InputError>
-                    </div>
-                    <div class="container-fluild form-group">
-                        <label for="e_steel">Esteel (ksi)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="e_steel" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.e_steel" name="e_steel" required autocomplete="e_steel">
-                        </div>
-                        <InputError :message="form.errors.e_steel"></InputError>
-                    </div>
-                    <div class="container-fluild form-group">
-                        <label for="e_conc">Econc (ksi)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="e_conc" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.e_conc" name="e_conc" required autocomplete="e_conc">
-                        </div>
-                        <InputError :message="form.errors.e_conc"></InputError>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="container-fluild form-group">
-                        <label for="cpf_soil">C'F.soil (psf)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="cpf_soil" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.cpf_soil" name="cpf_soil" required autocomplete="cpf_soil">
-                        </div>
-                        <InputError :message="form.errors.cpf_soil"></InputError>
-                    </div>
+                <div class="col-md-4">
                     <div class="container-fluild form-group">
                         <label for="bstem_batter">Ꞵstem-Batter (deg)
                             <Req />
@@ -325,16 +244,6 @@ export default {
                                 v-model="form.bstem_batter" name="bstem_batter" required autocomplete="bstem_batter">
                         </div>
                         <InputError :message="form.errors.bstem_batter"></InputError>
-                    </div>
-                    <div class="container-fluild form-group">
-                        <label for="ϴ">ϴ (deg)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="theta" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.theta" name="theta" required autocomplete="theta">
-                        </div>
-                        <InputError :message="form.errors.theta"></InputError>
                     </div>
                     <div class="container-fluild form-group">
                         <label for="b_i">Ꞵ (i) (deg)
@@ -357,7 +266,7 @@ export default {
                         <InputError :message="form.errors.sigma_brg"></InputError>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="container-fluild form-group">
                         <label for="delta_s">δs
                             <Req />
@@ -378,6 +287,8 @@ export default {
                         </div>
                         <InputError :message="form.errors.g_r_fill"></InputError>
                     </div>
+                </div>
+                <div class="col-md-4">
                     <div class="container-fluild form-group">
                         <label for="phi_r_fill">Ør.fill (deg)
                             <Req />
@@ -387,58 +298,6 @@ export default {
                                 v-model="form.phi_r_fill" name="phi_r_fill" required autocomplete="phi_r_fill">
                         </div>
                         <InputError :message="form.errors.phi_r_fill"></InputError>
-                    </div>
-                    <div class="container-fluild form-group">
-                        <label for="cpr_fill">C'r .Fill (psf)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="cpr_fill" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.cpr_fill" name="cpr_fill" required autocomplete="cpr_fill">
-                        </div>
-                        <InputError :message="form.errors.cpr_fill"></InputError>
-                    </div>
-                    <div class="container-fluild form-group">
-                        <label for="g_b_fill">ϒB.Fill (pcf)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="g_b_fill" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.g_b_fill" name="g_b_fill" required autocomplete="g_b_fill">
-                        </div>
-                        <InputError :message="form.errors.g_b_fill"></InputError>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="container-fluild form-group">
-                        <label for="phi_b_fill">ØB.Fill (deg)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="phi_b_fill" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.phi_b_fill" name="phi_b_fill" required autocomplete="phi_b_fill">
-                        </div>
-                        <InputError :message="form.errors.phi_b_fill"></InputError>
-                    </div>
-                    <div class="container-fluild form-group">
-                        <label for="cpb_fill">C'B.Fill (psf)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="cpb_fill" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.cpb_fill" name="cpb_fill" required autocomplete="cpb_fill">
-                        </div>
-                        <InputError :message="form.errors.cpb_fill"></InputError>
-                    </div>
-                    <div class="container-fluild form-group">
-                        <label for="g_f_soil">ϒF.soil (pcf)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="g_f_soil" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.g_f_soil" name="g_f_soil" required autocomplete="g_f_soil">
-                        </div>
-                        <InputError :message="form.errors.g_f_soil"></InputError>
                     </div>
                     <div class="container-fluild form-group">
                         <label for="phi_f_soil">ØF.soil (deg)
@@ -455,7 +314,7 @@ export default {
         </InputCard>
         <InputCard title="EQ Parameters">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="container-fluid form-group">
                         <label for="pga">PGA</label>
                         <div class="input-group mb-3">
@@ -464,24 +323,8 @@ export default {
                         </div>
                         <InputError :message="form.errors.pga"></InputError>
                     </div>
-                    <div class="container-fluid form-group">
-                        <label for="s_s_eq">S_s.EQ</label>
-                        <div class="input-group mb-3">
-                            <input id="s_s_eq" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.s_s_eq" name="s_s_eq" required autocomplete="s_s_eq">
-                        </div>
-                        <InputError :message="form.errors.s_s_eq"></InputError>
-                    </div>
-                    <div class="container-fluid form-group">
-                        <label for="s_1_eq">S_1.EQ</label>
-                        <div class="input-group mb-3">
-                            <input id="s_1_eq" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.s_1_eq" name="s_1_eq" required autocomplete="s_1_eq">
-                        </div>
-                        <InputError :message="form.errors.s_1_eq"></InputError>
-                    </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="container-fluid form-group">
                         <label for="f_pga_eq">F_PGA.EQ</label>
                         <div class="input-group mb-3">
@@ -490,42 +333,8 @@ export default {
                         </div>
                         <InputError :message="form.errors.f_pga_eq"></InputError>
                     </div>
-                    <div class="container-fluid form-group">
-                        <label for="f_a_eq">F_A.EQ</label>
-                        <div class="input-group mb-3">
-                            <input id="f_a_eq" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.f_a_eq" name="f_a_eq" required autocomplete="f_a_eq">
-                        </div>
-                        <InputError :message="form.errors.f_a_eq"></InputError>
-                    </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="container-fluid form-group">
-                        <label for="f_v_eq">F_V.EQ</label>
-                        <div class="input-group mb-3">
-                            <input id="f_v_eq" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.f_v_eq" name="f_v_eq" required autocomplete="f_v_eq">
-                        </div>
-                        <InputError :message="form.errors.f_v_eq"></InputError>
-                    </div>
-                    <div class="container-fluid form-group">
-                        <label for="s_d1_eq">S_D1.EQ</label>
-                        <div class="input-group mb-3">
-                            <input id="s_d1_eq" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.s_d1_eq" name="s_d1_eq" required autocomplete="s_d1_eq">
-                        </div>
-                        <InputError :message="form.errors.s_d1_eq"></InputError>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="container-fluid form-group">
-                        <label for="a_s_eq">A_s.EQ</label>
-                        <div class="input-group mb-3">
-                            <input id="a_s_eq" type="number" step="0.0000000001" class="form-control"
-                                v-model="form.a_s_eq" name="a_s_eq" required autocomplete="a_s_eq">
-                        </div>
-                        <InputError :message="form.errors.a_s_eq"></InputError>
-                    </div>
+                <div class="col-md-4">
                     <div class="container-fluid form-group">
                         <label for="k_v">K_V</label>
                         <div class="input-group mb-3">
@@ -539,7 +348,7 @@ export default {
         </InputCard>
         <InputCard title="Design Height and Spacing">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="container-fluild form-group">
                         <label for="min_design_height">Minimum Height
                             <Req />
@@ -552,7 +361,7 @@ export default {
                         <InputError :message="form.errors.min_design_height"></InputError>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="container-fluild form-group">
                         <label for="max_design_height">Maximum Height
                             <Req />
@@ -565,7 +374,7 @@ export default {
                         <InputError :message="form.errors.max_design_height"></InputError>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="container-fluild form-group">
                         <label for="s_v">Sv (ft)
                             <Req />
@@ -578,16 +387,6 @@ export default {
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="container-fluild form-group">
-                        <label for="s_h">Sh (ft)
-                            <Req />
-                        </label>
-                        <div class="input-group mb-3">
-                            <input id="s_h" type="number" step="0.0000000001" class="form-control" v-model="form.s_h"
-                                name="s_h" required autocomplete="s_h">
-                        </div>
-                        <InputError :message="form.errors.s_h"></InputError>
-                    </div>
                 </div>
             </div>
         </InputCard>

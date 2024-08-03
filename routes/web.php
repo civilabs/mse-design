@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\Project\Design\AbutmentExternalController;
-use App\Http\Controllers\Project\Design\WingsExternalLController;
+use App\Http\Controllers\Project\Design\WingExternalLController;
 use App\Http\Controllers\Project\DesignController;
 use App\Http\Controllers\Project\DocumentController;
 use App\Http\Controllers\Project\MemberController;
@@ -50,10 +50,10 @@ Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(fu
             Route::get('/abutment-external-stability/{abutment_external_stability}/word-report', [AbutmentExternalController::class, 'word_report'])->name('abutment_external_stability.word_report');
             Route::get('/abutment-external-stability/{abutment_external_stability}/excel-report', [AbutmentExternalController::class, 'excel_report'])->name('abutment_external_stability.excel_report');
 
-            Route::resource('/wing-external-stability-ll', WingsExternalLController::class, ['names' => 'wing_external_stability_ll']);
-            Route::get('/wing-external-stability-ll/{wing_external_stability_ll}/analyze', [WingsExternalLController::class, 'analyze'])->name('wing_external_stability_ll.analyze');
-            Route::get('/wing-external-stability-ll/{wing_external_stability_ll}/word-report', [WingsExternalLController::class, 'word_report'])->name('wing_external_stability_ll.word_report');
-            Route::get('/wing-external-stability-ll/{wing_external_stability_ll}/excel-report', [WingsExternalLController::class, 'excel_report'])->name('wing_external_stability_ll.excel_report');
+            Route::resource('/wing-external-stability-ll', WingExternalLController::class, ['names' => 'wing_external_stability_ll']);
+            Route::get('/wing-external-stability-ll/{wing_external_stability_ll}/analyze', [WingExternalLController::class, 'analyze'])->name('wing_external_stability_ll.analyze');
+            Route::get('/wing-external-stability-ll/{wing_external_stability_ll}/word-report', [WingExternalLController::class, 'word_report'])->name('wing_external_stability_ll.word_report');
+            Route::get('/wing-external-stability-ll/{wing_external_stability_ll}/excel-report', [WingExternalLController::class, 'excel_report'])->name('wing_external_stability_ll.excel_report');
         });
     });
 });

@@ -10,7 +10,7 @@ const props = defineProps({
 const deleteForm = useForm({})
 const deleteDesign = (project_id, design_id) => {
     document.getElementById('close-delete').click()
-    deleteForm.delete(route('user.projects.designs.abutment_external_stability.destroy', { 'project': project_id, 'abutment_external_stability': design_id }), {
+    deleteForm.delete(route('user.projects.designs.wing_external_stability_ll.destroy', { 'project': project_id, 'wing_external_stability_ll': design_id }), {
         onFinish: () => {
             deleteForm.reset()
         },
@@ -53,9 +53,9 @@ export default {
             <tbody>
                 <tr>
                     <td style="width: 30%;">YEV</td>
-                    <td style="width: 20%;">{{ design.abutment_external_stability.yev }}</td>
+                    <td style="width: 20%;">{{ design.wing_external_stability_ll.yev }}</td>
                     <td style="width: 30%;">YLS.V</td>
-                    <td style="width: 20%;">{{ design.abutment_external_stability.yls_v }}</td>
+                    <td style="width: 20%;">{{ design.wing_external_stability_ll.yls_v }}</td>
                 </tr>
             </tbody>
         </table>
@@ -65,23 +65,23 @@ export default {
             <tbody>
                 <tr>
                     <td style="width: 20%;">β stem-Batter (deg)</td>
-                    <td style="width: 14%;">{{ design.abutment_external_stability.bstem_batter }}</td>
+                    <td style="width: 14%;">{{ design.wing_external_stability_ll.bstem_batter }}</td>
                     <td style="width: 20%;">β (i) (deg)</td>
-                    <td style="width: 13%;">{{ design.abutment_external_stability.b_i }}</td>
+                    <td style="width: 13%;">{{ design.wing_external_stability_ll.b_i }}</td>
                     <td style="width: 20%;">σ_brg (ksf)</td>
-                    <td style="width: 13%;">{{ design.abutment_external_stability.sigma_brg }}</td>
+                    <td style="width: 13%;">{{ design.wing_external_stability_ll.sigma_brg }}</td>
                 </tr>
                 <tr>
                     <td>δs</td>
-                    <td>{{ design.abutment_external_stability.delta_s }}</td>
+                    <td>{{ design.wing_external_stability_ll.delta_s }}</td>
                     <td>γ r.fill (pcf)</td>
-                    <td>{{ design.abutment_external_stability.g_r_fill }}</td>
+                    <td>{{ design.wing_external_stability_ll.g_r_fill }}</td>
                     <td>φ r.fill (deg)</td>
-                    <td>{{ design.abutment_external_stability.phi_r_fill }}</td>
+                    <td>{{ design.wing_external_stability_ll.phi_r_fill }}</td>
                 </tr>
                 <tr>
                     <td>φ F.soil (deg)</td>
-                    <td>{{ design.abutment_external_stability.phi_f_soil }}</td>
+                    <td>{{ design.wing_external_stability_ll.phi_f_soil }}</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -95,11 +95,11 @@ export default {
             <tbody>
                 <tr>
                     <td style="width: 20%;">PGA</td>
-                    <td style="width: 14%;">{{ design.abutment_external_stability.pga }}</td>
+                    <td style="width: 14%;">{{ design.wing_external_stability_ll.pga }}</td>
                     <td style="width: 20%;">F_PGA.EQ</td>
-                    <td style="width: 13%;">{{ design.abutment_external_stability.f_pga_eq }}</td>
+                    <td style="width: 13%;">{{ design.wing_external_stability_ll.f_pga_eq }}</td>
                     <td style="width: 20%;">K_V</td>
-                    <td style="width: 13%;">{{ design.abutment_external_stability.k_v }}</td>
+                    <td style="width: 13%;">{{ design.wing_external_stability_ll.k_v }}</td>
                 </tr>
             </tbody>
         </table>
@@ -109,11 +109,11 @@ export default {
             <tbody>
                 <tr>
                     <td style="width: 20%;">Minimum Height</td>
-                    <td style="width: 14%;">{{ design.abutment_external_stability.min_design_height }}</td>
+                    <td style="width: 14%;">{{ design.wing_external_stability_ll.min_design_height }}</td>
                     <td style="width: 20%;">Maximum Height</td>
-                    <td style="width: 13%;">{{ design.abutment_external_stability.max_design_height }}</td>
+                    <td style="width: 13%;">{{ design.wing_external_stability_ll.max_design_height }}</td>
                     <td style="width: 20%;">Sv (ft)</td>
-                    <td style="width: 13%;">{{ design.abutment_external_stability.s_v }}</td>
+                    <td style="width: 13%;">{{ design.wing_external_stability_ll.s_v }}</td>
                 </tr>
             </tbody>
         </table>
@@ -121,11 +121,11 @@ export default {
     <div class="text-right py-3">
         <Link :href="route('user.projects.designs.index', project.id)" class="btn btn-primary mr-2">Back</Link>
         <Link v-if="can.edit_design"
-            :href="route('user.projects.designs.abutment_external_stability.edit', { 'project': project.id, 'abutment_external_stability': design.id })"
+            :href="route('user.projects.designs.wing_external_stability_ll.edit', { 'project': project.id, 'wing_external_stability_ll': design.id })"
             class="btn btn-outline-primary mr-2">Edit
         </Link>
         <Link
-            :href="route('user.projects.designs.abutment_external_stability.analyze', { 'project': project.id, 'abutment_external_stability': design.id })"
+            :href="route('user.projects.designs.wing_external_stability_ll.analyze', { 'project': project.id, 'wing_external_stability_ll': design.id })"
             class="btn btn-primary mr-2">Analyze
         </Link>
         <a v-if="can.delete_design" class="btn btn-danger" data-bs-toggle="modal" href="#"

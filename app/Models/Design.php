@@ -24,8 +24,8 @@ class Design extends Model
         return $this->hasOne(AbutmentExternalStability::class);
     }
 
-    public function wings_external_stability_ll()
+    public function wing_external_stability_ll()
     {
-        return $this->hasOne(WingsExternalStabilityLl::class);
+        return $this->hasOne(WingExternalStabilityLl::class);
     }
 }

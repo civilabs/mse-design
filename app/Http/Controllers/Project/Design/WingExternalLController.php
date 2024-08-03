@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Project\Design;
 
 use App\Http\Controllers\Controller;
-use App\Models\AbutmentExternalStability;
 use App\Models\Design;
 use App\Models\DesignType;
 use App\Models\Project;
-use App\Models\WingsExternalStabilityLl;
+use App\Models\WingExternalStabilityLl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
-class WingsExternalLController extends Controller
+class WingExternalLController extends Controller
 {
     /**
      * Show the form for creating a new resource.
@@ -21,7 +20,7 @@ class WingsExternalLController extends Controller
     {
         Gate::authorize('create', [Design::class, $project_id]);
         $project = Project::find($project_id);
-        return inertia('User/Project/Design/WingsExternalStabilityLL/Create')->with([
+        return inertia('User/Project/Design/WingExternalStabilityLL/Create')->with([
             'project' => $project,
         ]);
     }
@@ -39,42 +38,23 @@ class WingsExternalLController extends Controller
             'yls_v' => 'numeric|required',
 
             // Material Properties
-            'fpc' => 'numeric|required',
-            'fy' => 'numeric|required',
-            'g_conc' => 'numeric|required',
-            'e_steel' => 'numeric|required',
-            'e_conc' => 'numeric|required',
-            'cpf_soil' => 'numeric|required',
             'bstem_batter' => 'numeric|required',
-            'theta' => 'numeric|required',
             'b_i' => 'numeric|required',
             'sigma_brg' => 'numeric|required',
             'delta_s' => 'numeric|required',
             'g_r_fill' => 'numeric|required',
             'phi_r_fill' => 'numeric|required',
-            'cpr_fill' => 'numeric|required',
-            'g_b_fill' => 'numeric|required',
-            'phi_b_fill' => 'numeric|required',
-            'cpb_fill' => 'numeric|required',
-            'g_f_soil' => 'numeric|required',
             'phi_f_soil' => 'numeric|required',
 
             // EQ Parameters
             'pga' => 'numeric|required',
-            's_s_eq' => 'numeric|required',
-            's_1_eq' => 'numeric|required',
             'f_pga_eq' => 'numeric|required',
-            'f_a_eq' => 'numeric|required',
-            'f_v_eq' => 'numeric|required',
-            's_d1_eq' => 'numeric|required',
-            'a_s_eq' => 'numeric|required',
             'k_v' => 'numeric|required',
 
             // Design Height and Spacing
             'min_design_height' => 'numeric|required',
             'max_design_height' => 'numeric|required',
             's_v' => 'numeric|required',
-            's_h' => 'numeric|required'
         ]);
 
         // Assuming you have a Design model
@@ -84,10 +64,10 @@ class WingsExternalLController extends Controller
         $design->design_type_id = DesignType::WING_EXTERNAL_LL;
         $design->save();
 
-        $wings_external_ll = new WingsExternalStabilityLl($validated);
-        $wings_external_ll->project_id = $project_id;
-        $wings_external_ll->design_id = $design->id;
-        $wings_external_ll->save();
+        $wing_external_ll = new WingExternalStabilityLl($validated);
+        $wing_external_ll->project_id = $project_id;
+        $wing_external_ll->design_id = $design->id;
+        $wing_external_ll->save();
 
         return redirect(route('user.projects.designs.index', $design->project_id));
     }
@@ -97,10 +77,10 @@ class WingsExternalLController extends Controller
      */
     public function show(string $project_id, string $design_id)
     {
-        $design = Design::with(['user', 'design_type', 'abutment_external_stability'])->findOrFail($design_id);
+        $design = Design::with(['user', 'design_type', 'wing_external_stability_ll'])->findOrFail($design_id);
         Gate::authorize('view', [$design, $project_id]);
         $project = Project::findOrFail($project_id);
-        return inertia('User/Project/Design/AbutmentExternalStability/Show')->with([
+        return inertia('User/Project/Design/WingExternalStabilityLL/Show')->with([
             'project' => $project,
             'design' => $design,
             'can' => [
@@ -115,10 +95,10 @@ class WingsExternalLController extends Controller
      */
     public function edit(string $project_id, string $design_id)
     {
-        $design = Design::with(['user', 'design_type', 'abutment_external_stability'])->findOrFail($design_id);
+        $design = Design::with(['user', 'design_type', 'wing_external_stability_ll'])->findOrFail($design_id);
         Gate::authorize('update', $design);
         $project = Project::find($project_id);
-        return inertia('User/Project/Design/AbutmentExternalStability/Edit')->with([
+        return inertia('User/Project/Design/WingExternalStabilityLL/Edit')->with([
             'design' => $design,
             'project' => $project,
         ]);
@@ -138,47 +118,28 @@ class WingsExternalLController extends Controller
             'yls_v' => 'numeric|required',
 
             // Material Properties
-            'fpc' => 'numeric|required',
-            'fy' => 'numeric|required',
-            'g_conc' => 'numeric|required',
-            'e_steel' => 'numeric|required',
-            'e_conc' => 'numeric|required',
-            'cpf_soil' => 'numeric|required',
             'bstem_batter' => 'numeric|required',
-            'theta' => 'numeric|required',
             'b_i' => 'numeric|required',
             'sigma_brg' => 'numeric|required',
             'delta_s' => 'numeric|required',
             'g_r_fill' => 'numeric|required',
             'phi_r_fill' => 'numeric|required',
-            'cpr_fill' => 'numeric|required',
-            'g_b_fill' => 'numeric|required',
-            'phi_b_fill' => 'numeric|required',
-            'cpb_fill' => 'numeric|required',
-            'g_f_soil' => 'numeric|required',
             'phi_f_soil' => 'numeric|required',
 
             // EQ Parameters
             'pga' => 'numeric|required',
-            's_s_eq' => 'numeric|required',
-            's_1_eq' => 'numeric|required',
             'f_pga_eq' => 'numeric|required',
-            'f_a_eq' => 'numeric|required',
-            'f_v_eq' => 'numeric|required',
-            's_d1_eq' => 'numeric|required',
-            'a_s_eq' => 'numeric|required',
             'k_v' => 'numeric|required',
 
             // Design Height and Spacing
             'min_design_height' => 'numeric|required',
             'max_design_height' => 'numeric|required',
             's_v' => 'numeric|required',
-            's_h' => 'numeric|required'
         ]);
 
-        $design->abutment_external_stability->update($validated);
+        $design->wing_external_stability_ll->update($validated);
 
-        return redirect(route('user.projects.designs.abutment_external_stability.show', [$project_id, $design->id]))->with('success', 'Design updated successfully.');
+        return redirect(route('user.projects.designs.wing_external_stability_ll.show', [$project_id, $design->id]))->with('success', 'Design updated successfully.');
     }
 
     /**
@@ -199,7 +160,7 @@ class WingsExternalLController extends Controller
     {
         $design = Design::findOrFail($design_id);
         Gate::authorize('view', [$design, $project_id]);
-        $design_detail = $design->abutment_external_stability;
+        $design_detail = $design->wing_external_stability_ll;
         $project = Project::find($project_id);
         $min_rl = (float) $request->query('min_rl', 8);
 
@@ -222,37 +183,19 @@ class WingsExternalLController extends Controller
         $phi_sliding = 1;
         $yev = $design_detail->yev;
         $yls_v = $design_detail->yls_v;
-        $fy = $design_detail->fy;
-        $g_conc = $design_detail->g_conc;
-        $e_steel = $design_detail->e_steel;
-        $e_conc = $design_detail->e_conc;
-        $cpf_soil = $design_detail->cpf_soil;
         $bstem_batter = $design_detail->bstem_batter;
-        $theta = $design_detail->theta;
         $b_i = $design_detail->b_i;
         $sigma_brg = $design_detail->sigma_brg;
         $delta_s = $design_detail->delta_s;
         $g_r_fill = $design_detail->g_r_fill;
         $phi_r_fill = $design_detail->phi_r_fill;
-        $cpr_fill = $design_detail->cpr_fill;
-        $g_b_fill = $design_detail->g_b_fill;
-        $phi_b_fill = $design_detail->phi_b_fill;
-        $cpb_fill = $design_detail->cpb_fill;
-        $g_f_soil = $design_detail->g_f_soil;
         $phi_f_soil = $design_detail->phi_f_soil;
         $pga = $design_detail->pga;
-        $s_s_eq = $design_detail->s_s_eq;
-        $s_1_eq = $design_detail->s_1_eq;
         $f_pga_eq = $design_detail->f_pga_eq;
-        $f_a_eq = $design_detail->f_a_eq;
-        $f_v_eq = $design_detail->f_v_eq;
-        $s_d1_eq = $design_detail->s_d1_eq;
-        $a_s_eq = $design_detail->a_s_eq;
         $k_v = $design_detail->k_v;
         $min_design_height = $design_detail->min_design_height;
         $max_design_height = $design_detail->max_design_height;
         $s_v = $design_detail->s_v;
-        $s_h = $design_detail->s_h;
 
         // Initialize values for summary of loads table
         $rl_values = [];
@@ -470,7 +413,7 @@ class WingsExternalLController extends Controller
             $nl_values[] = $nl;
         }
 
-        return inertia('User/Project/Design/AbutmentExternalStability/Analyze')->with([
+        return inertia('User/Project/Design/WingExternalStabilityLL/Analyze')->with([
             'project' => $project,
             'design' => $design,
             'dh_values' => $dh_values,
